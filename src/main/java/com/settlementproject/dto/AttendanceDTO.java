@@ -1,19 +1,26 @@
 package com.settlementproject.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
-@Data
+@Entity
+@Table
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 public class AttendanceDTO {
 
-    private int id;
-    private int childId;
-    private Date entryDate;
-    private Date exitDate;
+    @Id
+    private UUID id;
+    private UUID childId;
+    private LocalDateTime entryDate;
+    private LocalDateTime exitDate;
 
 }

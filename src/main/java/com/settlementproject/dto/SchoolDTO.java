@@ -1,15 +1,23 @@
 package com.settlementproject.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
-@Data
+import java.util.UUID;
+
+@Entity
+@Table
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @AllArgsConstructor
-@NoArgsConstructor
 public class SchoolDTO {
 
-    private int id;
+    @Id
+    private UUID id;
     private String name;
     private double hourPrice;
 
