@@ -1,4 +1,4 @@
-package com.settlementproject.dto;
+package com.settlementproject.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

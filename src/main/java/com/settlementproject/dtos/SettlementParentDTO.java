@@ -1,17 +1,18 @@
-package com.settlementproject.dto;
+package com.settlementproject.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class SettlementChildDTO {
+public class SettlementParentDTO {
 
     private String firstName;
     private String lastName;
-    private double totalPrice;
-    private int payedHours;
+    private List<SettlementChildDTO> children;
 
 }

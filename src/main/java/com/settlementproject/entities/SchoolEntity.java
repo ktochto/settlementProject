@@ -1,4 +1,4 @@
-package com.settlementproject.dto;
+package com.settlementproject.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,11 +14,11 @@ import java.util.UUID;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class ParentDTO {
+public class SchoolEntity {
 
     @Id
     private UUID id;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private double hourPrice;
 
 }

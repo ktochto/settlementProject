@@ -1,4 +1,4 @@
-package com.settlementproject.dto;
+package com.settlementproject.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class AttendanceDTO {
+public class AttendanceEntity {
 
     @Id
     private UUID id;
