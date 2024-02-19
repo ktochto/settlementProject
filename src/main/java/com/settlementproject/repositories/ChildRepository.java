@@ -12,4 +12,6 @@ public interface ChildRepository extends JpaRepository<ChildEntity, UUID> {
 
     List<ChildEntity> findChildEntitiesByParentId(UUID parentId);
 
+    List<ChildEntity> findChildEntitiesBySchoolId(UUID schoolId);
+
 }

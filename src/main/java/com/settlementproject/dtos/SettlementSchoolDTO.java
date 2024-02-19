@@ -9,9 +9,9 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class SettlementIdDTO {
+public class SettlementSchoolDTO {
 
     private String name;
-    private List<SettlementParentDTO> parents;
+    private List<SettlementChildDTO> children;
 
 }
