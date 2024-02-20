@@ -5,13 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Repository
-public interface ChildRepository extends JpaRepository<ChildEntity, UUID> {
+public interface ChildRepository extends JpaRepository<ChildEntity, Long> {
 
-    List<ChildEntity> findChildEntitiesByParentId(UUID parentId);
+    List<ChildEntity> findChildEntitiesByParentId(Long parentId);
 
-    List<ChildEntity> findChildEntitiesBySchoolId(UUID schoolId);
+    List<ChildEntity> findChildEntitiesBySchoolId(Long schoolId);
 
 }

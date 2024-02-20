@@ -7,12 +7,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Repository
-public interface AttendanceRepository extends JpaRepository<AttendanceEntity, UUID> {
+public interface AttendanceRepository extends JpaRepository<AttendanceEntity, Long> {
 
     @Query("select a from AttendanceEntity a where month(a.entryDate) = :month and month(a.exitDate) = :month and a.childId = :id")
-    List<AttendanceEntity> findAttendanceEntitiesByChildIdAnaEntryDateAndExitDate(@Param("id") UUID id, @Param("month") int month);
+    List<AttendanceEntity> findAttendanceByChildIdAndMonth(@Param("id") Long id, @Param("month") int month);
 
 }

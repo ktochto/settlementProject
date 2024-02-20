@@ -1,33 +1,28 @@
 package com.settlementproject.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
 @ToString
-@Table(name = "attendance")
+@Table
 public class AttendanceEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
-    @NonNull
-    private UUID childId;
-    @NonNull
+    private Long id;
+    @Column(nullable = false)
+    private Long childId;
+    @Column(nullable = false)
     private LocalDateTime entryDate;
-    @NonNull
+    @Column(nullable = false)
     private LocalDateTime exitDate;
 
 }

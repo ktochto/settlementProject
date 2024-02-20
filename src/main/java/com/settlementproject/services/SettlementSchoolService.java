@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,27 +19,20 @@ public class SettlementSchoolService {
     private final ChildService childService;
 
 
-    public SettlementSchoolDTO createSettlementForSchool(UUID inputId, String inputDate) throws SchoolNotExistException, WrongDateInpuException {
-        SchoolEntity school = schoolService.getSchoolById(inputId);
-        return createSettlement(inputDate, school);
-    }
-
-    private SettlementSchoolDTO createSettlement(String inputDate, SchoolEntity school) throws SchoolNotExistException, WrongDateInpuException {
+    public SettlementSchoolDTO createSettlementForSchool(Long inputSchoolId, String inputDate) throws SchoolNotExistException, WrongDateInpuException {
+        SchoolEntity school = schoolService.getSchoolById(inputSchoolId);
         SettlementSchoolDTO settlementSchool = new SettlementSchoolDTO();
         setSchoolData(school, settlementSchool);
-        setChildrenData(school, inputDate, settlementSchool);
+        calculateChildrenSettlementsAndSet(inputSchoolId, inputDate, settlementSchool);
         return settlementSchool;
     }
 
-    private static void setSchoolData(SchoolEntity school, SettlementSchoolDTO settlementSchool) {
+    private void setSchoolData(SchoolEntity school, SettlementSchoolDTO settlementSchool) {
         settlementSchool.setName(school.getName());
     }
 
-    private void setChildrenData(SchoolEntity school, String inputDate, SettlementSchoolDTO settlementSchool) throws SchoolNotExistException, WrongDateInpuException {
-        List<ChildEntity> schoolsChildren = childService.getChildListBySchoolId(school.getId());
-        if (schoolsChildren.isEmpty()) {
-            return;
-        }
+    private void calculateChildrenSettlementsAndSet(Long schoolId, String inputDate, SettlementSchoolDTO settlementSchool) throws SchoolNotExistException, WrongDateInpuException {
+        List<ChildEntity> schoolsChildren = childService.getChildListBySchoolId(schoolId);
         List<SettlementChildDTO> settlementsForChildren = settlementChildService.createSettlementsForChildren(inputDate, schoolsChildren);
         settlementSchool.setChildren(settlementsForChildren);
     }

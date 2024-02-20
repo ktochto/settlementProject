@@ -35,7 +35,7 @@ public class SettlementChildService {
         return settlementChild;
     }
 
-    private static void setChildNameData(ChildEntity child, SettlementChildDTO settlementChild) {
+    private void setChildNameData(ChildEntity child, SettlementChildDTO settlementChild) {
         settlementChild.setFirstName(child.getFirstName());
         settlementChild.setLastName(child.getLastName());
     }
@@ -44,8 +44,8 @@ public class SettlementChildService {
         int payedHours = 0;
         int totalPrice = 0;
         SchoolEntity school = schoolService.getSchoolById(child.getSchoolId());
-//        List<AttendanceEntity> attendanceEntities = attendanceService.getAttendanceByChildId(child.getId());
-        List<AttendanceEntity> attendanceEntities = attendanceService.findAttendanceByChildIdAnaMonth(child.getId(), inputDate);
+
+        List<AttendanceEntity> attendanceEntities = attendanceService.findAttendanceByChildIdAndMonth(child.getId(), inputDate);
         for (AttendanceEntity attendance : attendanceEntities) {
             int payedHoursForOneDay = attendanceService.howManyPayedHours(attendance);
             payedHours += payedHoursForOneDay;

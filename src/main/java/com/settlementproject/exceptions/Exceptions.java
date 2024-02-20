@@ -6,6 +6,7 @@ import lombok.Getter;
 public enum Exceptions {
 
     BAD_REQUEST("Bad Request."),
+    INTERNAL_SERVER_ERROR("Internal Server Error"),
     WRONG_INPUT("Wrong date input format."),
     UNAUTHORIZED("Unauthorized."),
 

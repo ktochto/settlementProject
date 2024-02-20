@@ -20,28 +20,21 @@ public class SettlementParentService {
     private final ChildService childService;
 
 
-    public SettlementParentDTO createSettlementForParent(ParentEntity inputParent, String inputDate) throws ParentNotExistException, SchoolNotExistException, WrongDateInpuException {
-        ParentEntity parent = parentService.getParentById(inputParent.getId());
-        return createSettlement(inputDate, parent);
-    }
-
-    private SettlementParentDTO createSettlement(String inputDate, ParentEntity parent) throws SchoolNotExistException, WrongDateInpuException {
+    public SettlementParentDTO createSettlementForParent(Long inputParentId, String inputDate) throws ParentNotExistException, SchoolNotExistException, WrongDateInpuException {
+        ParentEntity parent = parentService.getParentById(inputParentId);
         SettlementParentDTO settlementParent = new SettlementParentDTO();
         setParentData(parent, settlementParent);
-        setChildrenData(parent, inputDate, settlementParent);
+        calculateChildrenSettlementsAndSet(inputParentId, inputDate, settlementParent);
         return settlementParent;
     }
 
-    private static void setParentData(ParentEntity parent, SettlementParentDTO settlementParent) {
+    private void setParentData(ParentEntity parent, SettlementParentDTO settlementParent) {
         settlementParent.setFirstName(parent.getFirstName());
         settlementParent.setLastName(parent.getLastName());
     }
 
-    private void setChildrenData(ParentEntity parent, String inputDate, SettlementParentDTO settlementParent) throws SchoolNotExistException, WrongDateInpuException {
-        List<ChildEntity> parentsChildren = childService.getChildListByParentId(parent.getId());
-        if (parentsChildren.isEmpty()) {
-            return;
-        }
+    private void calculateChildrenSettlementsAndSet(Long parentId, String inputDate, SettlementParentDTO settlementParent) throws SchoolNotExistException, WrongDateInpuException {
+        List<ChildEntity> parentsChildren = childService.getChildListByParentId(parentId);
         List<SettlementChildDTO> settlementsForChildren = settlementChildService.createSettlementsForChildren(inputDate, parentsChildren);
         settlementParent.setChildren(settlementsForChildren);
     }
