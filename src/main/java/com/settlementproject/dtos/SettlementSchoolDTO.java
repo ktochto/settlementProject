@@ -13,5 +13,7 @@ public class SettlementSchoolDTO {
 
     private String name;
     private List<SettlementChildDTO> children;
+    private double totalPrice;
+    private int payedHours;
 
 }

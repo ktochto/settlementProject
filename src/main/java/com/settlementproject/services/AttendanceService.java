@@ -26,7 +26,7 @@ public class AttendanceService {
 
     public List<AttendanceEntity> findAttendanceByChildIdAndMonth(Long childId, String inputDate) throws WrongDateInpuException {
         LocalDate monthDate = getLocalDateOfInputDate(inputDate);
-        List<AttendanceEntity> attendanceEntityList = attendanceRepository.findAttendanceByChildIdAndMonth(childId, monthDate.getMonthValue());
+        List<AttendanceEntity> attendanceEntityList = attendanceRepository.findAttendanceByChildIdAndMonthAndYear(childId, monthDate.getMonthValue(), monthDate.getYear());
         return Objects.requireNonNullElseGet(attendanceEntityList, ArrayList::new);
     }
 
@@ -52,7 +52,7 @@ public class AttendanceService {
         try {
             return LocalDate.parse(month, formatter);
         } catch (DateTimeParseException e) {
-            throw new WrongDateInpuException();
+            throw new WrongDateInpuException(month);
         }
     }
 

@@ -24,6 +24,7 @@ public class SettlementSchoolService {
         SettlementSchoolDTO settlementSchool = new SettlementSchoolDTO();
         setSchoolData(school, settlementSchool);
         calculateChildrenSettlementsAndSet(inputSchoolId, inputDate, settlementSchool);
+        calculateTotalHoursAndPriceAndSet(settlementSchool);
         return settlementSchool;
     }
 
@@ -35,6 +36,19 @@ public class SettlementSchoolService {
         List<ChildEntity> schoolsChildren = childService.getChildListBySchoolId(schoolId);
         List<SettlementChildDTO> settlementsForChildren = settlementChildService.createSettlementsForChildren(inputDate, schoolsChildren);
         settlementSchool.setChildren(settlementsForChildren);
+    }
+
+    private void calculateTotalHoursAndPriceAndSet(SettlementSchoolDTO settlementSchool) {
+        double totalPrice = settlementSchool.getChildren().stream()
+                .mapToDouble(SettlementChildDTO::getTotalPrice)
+                .sum();
+
+        int payedHours = settlementSchool.getChildren().stream()
+                .mapToInt(SettlementChildDTO::getPayedHours)
+                .sum();
+
+        settlementSchool.setTotalPrice(totalPrice);
+        settlementSchool.setPayedHours(payedHours);
     }
 
 }

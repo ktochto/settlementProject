@@ -42,7 +42,7 @@ public class SettlementChildService {
 
     private void findAndSetChildAttendanceData(String inputDate, ChildEntity child, SettlementChildDTO settlementChild) throws SchoolNotExistException, WrongDateInpuException {
         int payedHours = 0;
-        int totalPrice = 0;
+        double totalPrice = 0;
         SchoolEntity school = schoolService.getSchoolById(child.getSchoolId());
 
         List<AttendanceEntity> attendanceEntities = attendanceService.findAttendanceByChildIdAndMonth(child.getId(), inputDate);

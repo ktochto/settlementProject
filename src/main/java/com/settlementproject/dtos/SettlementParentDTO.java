@@ -14,5 +14,7 @@ public class SettlementParentDTO {
     private String firstName;
     private String lastName;
     private List<SettlementChildDTO> children;
+    private double totalPrice;
+    private int payedHours;
 
 }

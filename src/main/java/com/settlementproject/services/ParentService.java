@@ -17,7 +17,7 @@ public class ParentService {
     public ParentEntity getParentById(Long id) throws ParentNotExistException {
         Optional<ParentEntity> parentDTO = parentRepository.findParentEntityById(id);
         if (parentDTO.isEmpty())
-            throw new ParentNotExistException();
+            throw new ParentNotExistException(id.toString());
         return parentDTO.get();
     }
 

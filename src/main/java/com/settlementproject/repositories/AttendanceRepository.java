@@ -11,7 +11,9 @@ import java.util.List;
 @Repository
 public interface AttendanceRepository extends JpaRepository<AttendanceEntity, Long> {
 
-    @Query("select a from AttendanceEntity a where month(a.entryDate) = :month and month(a.exitDate) = :month and a.childId = :id")
-    List<AttendanceEntity> findAttendanceByChildIdAndMonth(@Param("id") Long id, @Param("month") int month);
+    @Query("select a from AttendanceEntity a where month(a.entryDate) = :month and month(a.exitDate) = :month " +
+            "and year (a.entryDate) = :year and year(a.exitDate) = :year " +
+            "and a.childId = :id")
+    List<AttendanceEntity> findAttendanceByChildIdAndMonthAndYear(@Param("id") Long id, @Param("month") int month, @Param("year") int year);
 
 }

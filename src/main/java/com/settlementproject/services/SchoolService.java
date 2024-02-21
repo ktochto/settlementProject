@@ -17,7 +17,7 @@ public class SchoolService {
     public SchoolEntity getSchoolById(Long id) throws SchoolNotExistException {
         Optional<SchoolEntity> attendanceDTO = schoolRepository.findSchoolEntityById(id);
         if (attendanceDTO.isEmpty())
-            throw new SchoolNotExistException();
+            throw new SchoolNotExistException(id.toString());
         return attendanceDTO.get();
     }
 

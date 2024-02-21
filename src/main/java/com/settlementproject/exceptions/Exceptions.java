@@ -10,12 +10,12 @@ public enum Exceptions {
     WRONG_INPUT("Wrong date input format."),
     UNAUTHORIZED("Unauthorized."),
 
-    NO_PARENT("This parent isn't exist."),
-    PARENT_EXIST("This parent already exist."),
+    NO_PARENT("Parent with this id isn't exist."),
+    PARENT_EXIST("Parent with this id already exist."),
 
     DATE_EXCEPTION("Date of exit is before date of enter."),
 
-    NO_SCHOOL("This school isn't exist."),
+    NO_SCHOOL("School with this id isn't exist."),
 
     ;
 
